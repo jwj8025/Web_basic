@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>selector</title>
+  <style>
+    div {
+        /*width: 100px;*/
+        height: 100px;
+        line-height: 100px;
+        background-color: aqua;
+        text-align: center;
+    }
+    /*.은 클래스(속성을 먹는)*/
+
+    .bgRed {
+        background-color: red;
+    /*    색깔을 오버라이드 한 것*/
+        text-decoration: underline;
+        font-family: "Noto Sans KR";
+        font-size: 40px
+    /*    글에 줄치고 글씨체 바꾸고 사이즈 조절하는 항목*/
+    }
+
+    .bgBlue {
+        background-color: blue;
+        text-decoration: overline;
+    }
+
+    .yellowText {
+        color: yellow;
+    /*    그냥 컬러는 글자에 들어가는 컬러*/
+    }
+
+    /*#은 아이디를 가리킴*/
+    #player {
+        width : 50px;
+  </style>
+</head>
+<body>
+<!--yellowText처럼 따로 클래스를 만들어서 디자인을 먹일 수 있다(재사용 가능)-->
+  <div class="bgRed yellowText">빨강</div>
+  <div class="bgBlue">파랑</div>
+<!--클래스에 이렇게 설정을 붙인다?-->
+<div id="player"></div>
+</body>
+</html>
