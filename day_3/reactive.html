@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>미디어 쿼리</title>
+  <style>
+      #div1 {
+          background-color: green;
+      }
+
+    @media(max-width: 1280px) {
+        #div1 {
+            background-color: dodgerblue;
+        }
+    }
+
+    @media (max-width: 600px) {
+        #div1 {
+            background-color: pink;
+        }
+    }
+  </style>
+
+<!--  픽셀이 들어온게 아니면 반응형이라고 보면 된다-->
+
+</head>
+<body>
+  <div id="div1">div</div>
+</body>
+</html>
