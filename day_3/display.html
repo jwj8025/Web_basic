@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>display</title>
+  <style>
+      div {
+          display: block;
+      }
+
+    #div1 {
+        /*visibility: hidden;  다른 속성*/
+        height: 100px;
+        background-color: deeppink;
+    }
+    #div2 {
+        height: 100px;
+        background-color: deepskyblue;
+    }
+
+    .highlight{
+        /*inline은 width와 height를 쓸 수 없다*/
+        color: red;
+    }
+
+    .inlineBlock {
+        width: 200px;
+        display: inline-block;
+        /*인라인 블록은 가로세로를 조정할 수 있고 그냥 인라인은 불가하다*/
+        background-color: pink;
+    }
+
+    .div3 {
+        margin: 10px;
+        padding: 10px;
+        /*마진과 패딩을 조정할 때 인라인은 좌우는 되지만 위아래가 안되고 인라인 블록은 전부 조정 가능하다*/
+        background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="div1"></div>
+  <div id="div2"></div>
+
+  <h3>inline과 inline-block의 차이</h3>
+
+  <span>나는</span>
+<!-- span은 기본적으로 좌우 정렬-->
+  <span class="highlight">천재</span>
+  <span>다</span>
+  <span class="inlineBlock">inline-block</span>
+
+  <div class="div3">margin, padding</div>
+</body>
+</html>
