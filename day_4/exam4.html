@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>exam4</title>
+  <style>
+    div {
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .normal {
+        background-color: gray;
+        color: white;
+    }
+
+    .pressed {
+        background-color: white;
+        color: black;
+    }
+  </style>
+
+  <script>
+    function clicked(target) {
+        // div에 있는 것들을 모두 얻어온다
+        const buttons = document.getElementsByTagName("div");
+
+        // buttons.forEach((button) => {
+        //     button.className = "normal";
+        // }); //처음부터 끝까지 뺑뺑이를 돌릴 때는 foreach를 자주 쓴다
+
+         for (let i = 0; i < buttons.length; i++) {
+              buttons[i].className = "normal";
+         }
+
+
+        target.className = "pressed";
+    }
+  </script>
+</head>
+<body>
+  <div class="normal" onclick="clicked(this)">html</div>
+  <div class="normal" onclick="clicked(this)">css</div>
+  <div class="normal" onclick="clicked(this)">javascript</div>
+</body>
+</html>
