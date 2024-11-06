@@ -14,4 +14,6 @@ class GuguClass {
 }
 ```
 
-#### 제목
+#### 스샷
+
+<img width="401" alt="image" src="https://github.com/user-attachments/assets/0095b4b2-17ed-4e2f-90e5-7e0fa6957a04">
