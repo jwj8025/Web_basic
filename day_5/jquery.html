@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>jquery</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>"></script>
+  <script>
+
+      function insert() {
+          $("#div2").append("<div>짜잔</div>")
+      //     버튼 눌렀을 때 실행
+      }
+
+      function changeWidth() {
+          const width = $("#width").val();
+          $("#image").attr("width", width);
+      }
+
+      function changeBlur(target) {
+          console.log(target.checked); //타겟의 값 얻기
+
+          if(target.checked) {
+              $("#image").css("filter", "blur(5px)");
+          }
+          else {
+              $("#image").css("filter", "blur(0px)");
+          }
+      //     뿌옇게 만드는 필터값 주고 없애기
+
+      }
+      // 올라간 사진의 크기를 줄이거나 늘릴 수 있는 기능함수
+
+      window.addEventListener("keydown", (event) => {
+          if(event.key === "ArrowLeft") {
+              console.log("왼쪽");
+          }
+          else if (event.key === "ArrowRight") {
+              console.log("오른쪽");
+          }
+          else if (event.key === "ArrowUp") {
+              console.log("위");
+          }
+          else if (event.key === "ArrowDown") {
+              console.log("아래");
+          }
+      });
+//       이 식대로 쓰는거 추천
+
+<!--$(() => { ~내용~ }) 해도 같다-->
+    $(function () {
+        console.log("a");
+
+        // document.getElementsByTagName("div") 전에 쓰던 방법
+        let div1 = $("div1");
+        console.log(div1);
+
+        // document.getElementById("div2");
+        let nativeDiv2 =  document.getElementById("div2");
+        console.log(nativeDiv2);
+
+        //jquery 객체들은 별도?
+        let div2 = $("#div2");
+        console.log(div2);
+
+        // document.getElementsByClassName("div3");
+        let div3 = $(".div3");
+        console.log(div3);
+
+    });
+  </script>
+
+  <style>
+    .filter {
+        filter: blur(5px);
+    }
+  </style>
+
+</head>
+<body>
+  <div>div1</div>
+  <div id="div2">div2</div>
+<!--  뭔가 넣고 싶다-->
+  <div class="div3">div3</div>
+  <button onclick="insert()">div2와 3 사이에 뭐 넣기</button>
+
+  <br>
+  <img src="../day_1/7170113c6a983.jpg" width="300" id="image" /><br>
+  <label>
+    크기 :
+    <input type="text" id="width">
+  </label>
+  <button onclick="changeWidth()">변경</button><br>
+  <label>
+    <input type="checkbox" onchange="changeBlur(this)">뿌옇게
+  </label>
+</body>
+</html>
