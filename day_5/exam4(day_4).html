@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>exam4</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>"></script>
+  <style>
+    div {
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .normal {
+        background-color: gray;
+        color: white;
+    }
+
+    .pressed {
+        background-color: white;
+        color: black;
+    }
+  </style>
+
+  <script>
+    function clicked(target) {
+        // div에 있는 것들을 모두 얻어온다
+        //target은 jquery 객체가 아니라 jquery에서 쓸 수는 없지만 쓰려면 $(target)으로 감싸면 된다
+        //$(target).attr("class", "pressed");
+        //const buttons = document.getElementsByTagName("div");
+
+        const buttons = $("div");
+
+        // buttons.forEach((button) => {
+        //     button.className = "normal";
+        // }); //처음부터 끝까지 뺑뺑이를 돌릴 때는 foreach를 자주 쓴다
+
+        buttons.attr("class", "normal");
+
+        //위처럼 줄여서 바꿀수도 있다
+         // for (let i = 0; i < buttons.length; i++) {
+         //      buttons[i].className = "normal";
+         // }
+
+        target.className = "pressed";
+    }
+  </script>
+</head>
+<body>
+  <div class="normal" onclick="clicked(this)">html</div>
+  <div class="normal" onclick="clicked(this)">css</div>
+  <div class="normal" onclick="clicked(this)">javascript</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>exam3</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>"></script>
+  <script>
+    // let text = prompt("텍스트값을 입력해주세요");
+    //
+    // if(!text)
+    // {
+    //     alert("텍스트값을 다시 입력해주세요");
+    // }
+    // else
+    // {
+    //     // text = document.getElementById("textStyle1");
+    //     document.write(text);
+    // }
+
+    function inputText() {
+        const text = prompt("텍스트를 입력해주세요");
+
+        if(text === null) {
+            alert("텍스트 값을 다시 입력해주세요");
+        }
+
+        $("#text").html(text);
+
+        // const textDiv = document.getElementById("text");
+        // textDiv.innerHTML = text;
+
+        $("#result").attr("class", "center");
+
+        // const result = document.getElementById("result");
+        // result.className = "center";
+    }
+
+    // function changeColorRed() {
+    //     const text = document.getElementById("text");
+    //     text.style.color = "red";
+    // }
+
+    function changeColor(color) {
+
+        $("#text").css("color", color);
+
+        // const text = document.getElementById("text");
+        // text.style.color = color;
+
+        alert(`${color}색으로 변경됩니다`);
+    }
+
+  </script>
+
+  <style>
+    /*div {}*/
+    /*#textStyle1 {*/
+    /*    font-size: 100px;*/
+    /*    text-align: center;*/
+    /*}*/
+    .hidden {
+        visibility: visible;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+  </style>
+
+</head>
+<body>
+  <button onclick="inputText()">텍스트 입력</button>
+
+  <div id="result" class="center hidden">
+    <div id="text">여기</div>
+      <div class="center">
+        <button onclick="changeColor('red')">빨강</button>
+        <button onclick="changeColor('blue')">파랑</button>
+        <button onclick="changeColor('green')">초록</button>
+      </div>
+  </div>
+</body>
+</html>
