@@ -17,6 +17,7 @@
       }
 
       #player {
+          z-index: 1;
           position: absolute;
           left: 30px;
           bottom: 80px;
@@ -27,6 +28,21 @@
           right: 10px;
           bottom: 100px;
       }
+
+      #score {
+          color: chocolate;
+          font-size: 30px;
+          text-align: center;
+      }
+
+      .fire {
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          bottom: 100px;
+          left: 30px;
+      }
+
   </style>
 
   <script>
@@ -38,6 +54,12 @@
 
       let isJumping = false;
       let isSpawning = false;
+
+      let enemySpeed = 10;
+
+      let isDie = false;
+
+      let score = 0;
 
       function jump() {
           if(isJumping === true) {
@@ -56,7 +78,7 @@
       }
 
       function moveEnemy() {
-          $(".enemy").css("right", "+=3px");
+          $(".enemy").css("right", `+=${enemySpeed}px`);
 
           checkEnemyBounds();
       }
@@ -70,17 +92,33 @@
           }
       }
 
+      function setScore(score) {
+          $("#score").text(`SCORE : ${score}`);
+      }
+
       function respawnEnemy() {
 
           if(isSpawning) {
               return;
           }
 
+          if (!isDie) {
+              score += 100;
+              setScore(score);
+          }
+
+          $("#enemy").show();
+
           isSpawning = true;
+          enemySpeed = Math.random() * 15 + 5;  //0.0 ~ 1.0
+          // ex) 5 ~ 20
+
+          const spawnTime = Math.random() * 1000 + 500;  // 500 ~ 1500 사이 값
+
           setTimeout(() => {
               $(".enemy").css("right", "-100px");
               isSpawning = false;
-          }, 1000);
+          }, spawnTime);
           // $(".enemy").css("right", "-100px");
       }
 
@@ -124,12 +162,38 @@
           return isColliding;
       }
 
+      function fire() {
+          const id = Date.now();
+          $("#background").append(`<div id="${id}" class="fire">총알</div>`);
+
+          $(`#${id}`).animate({
+              left: "500px"
+          })
+      }
+
+      function checkEnemyDie() {
+
+          const enemy = document.getElementById("enemy");
+
+          // .을 쓰면 여러개 만들 수 있다??
+          $(".fire").each(() => {
+              if (checkCollision(this, enemy)) {
+                 $(this).remove();
+                  $(enemy).hide();
+                  respawnEnemy();
+              }
+          });
+      }
+
       function gameLoop() {
           //계속 반복됨
           moveEnemy();
 
+          checkEnemyDie();
+
           if (checkGameOver()) {
-              return;
+              isDie = true;
+              // return;
           }
 
           requestAnimationFrame(gameLoop);
@@ -138,6 +202,10 @@
       window.addEventListener("keydown", (event) => {
           if(event.key === " ") {
               jump();
+          }
+          else if (event.key === "Control") {
+              fire();
+              console.log("fire");
           }
       });
 
@@ -156,6 +224,14 @@
 
     <div class="enemy" id="enemy">
       <img src="assets/Bullet_Bill_-_New_Super_Mario_Bros.webp" width="100px">
+    </div>
+
+    <div id="score">
+      SCORE : 0
+    </div>
+
+    <div>
+
     </div>
 
   </div>
