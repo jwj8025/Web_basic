@@ -20,10 +20,11 @@
         /*background-image: url("assets/img.png");*/
         background-size: cover;
         position: absolute;
+        visibility: hidden;
         left: 50px;
         width: 50px;
         height: 50px;
-        background-color: gray;
+        /*background-color: gray;*/
     }
   </style>
 
@@ -31,8 +32,23 @@
 
       const bgWidth = 500;
       const bgHeight = 500;
+
       const playerWidth = 50;
       const playerHeight = 50;
+
+
+
+      // onload : 화면 다 그리고 실행 , 화면 상 초기화하는 코드가 많이 있을 때 사용?
+      // set timer 없이 바로 이동한다고 하면 이걸 사용?
+      $(() => {
+          initGame();
+      })
+
+      function initGame() {
+          setTimeout(/*function*/() => {
+              $("#player").css("visibility", "visible");
+          }, 3000);
+      }
 
       function moveLeft() {
           $("#player").css("left", "-=50px");

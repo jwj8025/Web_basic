@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>exam2</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <style>
+      #background {
+          background-image: url("assets/img_1.png");
+          background-size: auto;
+          position: absolute;
+          left: 50px;
+          top: 50px;
+          width: 500px;
+          height: 500px;
+          border: 1px solid black;
+      }
+
+      #player {
+          position: absolute;
+          left: 30px;
+          bottom: 80px;
+      }
+
+      .enemy {
+          position: absolute;
+          right: 10px;
+          bottom: 100px;
+      }
+  </style>
+
+  <script>
+
+      const playerWidth = 50;
+      const playerHeight = 50;
+
+      let enemyRight = 10;
+
+      let isJumping = false;
+      let isSpawning = false;
+
+      function jump() {
+          if(isJumping === true) {
+              return;
+          }
+
+          isJumping = true;
+          $("#player").animate({
+              bottom: "+=150px"
+          }, 500).animate({
+              bottom: "-=150px"
+          }, 500, () => {
+              isJumping = false;
+          });
+      //     2번째 인자에 점프 속도 조절, 세번째 인자에 변수 넣어서 점프 연타 방지 추가
+      }
+
+      function moveEnemy() {
+          $(".enemy").css("right", "+=3px");
+
+          checkEnemyBounds();
+      }
+
+      function checkEnemyBounds() {
+          const player = $(".enemy");
+          const playerLeft = parseInt(player.css("left"));  //"0px" -> 0
+
+          if(playerLeft < -100) {
+              respawnEnemy();
+          }
+      }
+
+      function respawnEnemy() {
+
+          if(isSpawning) {
+              return;
+          }
+
+          isSpawning = true;
+          setTimeout(() => {
+              $(".enemy").css("right", "-100px");
+              isSpawning = false;
+          }, 1000);
+          // $(".enemy").css("right", "-100px");
+      }
+
+      // function checkGameOver() {
+      //     const playerX = parseInt($("#player").css("left"));
+      //     const playerY = parseInt($("#player").css("bottom"));
+      //
+      //     let isGameOver = false;
+      //
+      //     if (checkCollision(player, enemy)) {
+      //         console.log("Game over");
+      //     }
+      // }
+
+      function checkGameOver() {
+          const player = document.getElementById("player");
+          const enemy = document.getElementById("enemy");
+
+          let isGameOver = false;
+
+          if (checkCollision(player, enemy)) {
+              console.log("Game over");
+              isGameOver = true;
+          }
+
+          return isGameOver;
+
+      }
+
+      function checkCollision(div1, div2) {
+          //div1과 div2의 위치와 크기를 구함
+          const rect1 = div1.getBoundingClientRect();
+          const rect2 = div2.getBoundingClientRect();
+
+          //충돌 체크
+          const isColliding = !(rect1.right < rect2.left ||
+              rect1.left > rect2.right ||
+              rect1.bottom < rect2.top ||
+              rect1.top > rect2.bottom);
+
+          return isColliding;
+      }
+
+      function gameLoop() {
+          //계속 반복됨
+          moveEnemy();
+
+          if (checkGameOver()) {
+              return;
+          }
+
+          requestAnimationFrame(gameLoop);
+      }
+
+      window.addEventListener("keydown", (event) => {
+          if(event.key === " ") {
+              jump();
+          }
+      });
+
+      $(() => {
+          gameLoop();
+      })
+
+  </script>
+
+</head>
+<body>
+  <div id="background">
+    <div id="player">
+      <img src="assets/img.png" width="50px" height="50px">
+    </div>
+
+    <div class="enemy" id="enemy">
+      <img src="assets/Bullet_Bill_-_New_Super_Mario_Bros.webp" width="100px">
+    </div>
+
+  </div>
+</body>
+</html>
