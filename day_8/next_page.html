@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>next_page</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+      // function moveNextPage() {
+      //     location.href = "https://naver.com";
+      //     //절대 경로 사용
+      // }
+
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name"); //홍길동
+      const age = params.get("age"); //"10"
+
+      $(() => {
+          $("body").append(`${name} : ${age}`);
+      })
+
+  </script>
+</head>
+<body>
+<button onclick="moveNextPage()">페이지 이동</button>
+</body>
+</html>
